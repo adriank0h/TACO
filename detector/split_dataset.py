@@ -7,14 +7,13 @@ import datetime as dt
 import copy
 
 parser = argparse.ArgumentParser(description='User args')
-parser.add_argument('--dataset_dir', required=True, help='Path to dataset annotations')
 parser.add_argument('--test_percentage', type=int, default=10, required=False, help='Percentage of images used for the testing set')
 parser.add_argument('--val_percentage', type=int, default=10, required=False, help='Percentage of images used for the validation set')
 parser.add_argument('--nr_trials', type=int, default=10, required=False, help='Number of splits')
 
 args = parser.parse_args()
 
-ann_input_path = args.dataset_dir + '/' + 'annotations.json'
+ann_input_path = '/Users/adriankoh/Documents/GitHub/Obj_Recognition/data/annotations.json'
 
 # Load annotations
 with open(ann_input_path, 'r') as f:
@@ -83,9 +82,9 @@ for i in range(args.nr_trials):
             train_set['scene_annotations'].append(ann)
 
     # Write dataset splits
-    ann_train_out_path = args.dataset_dir + '/' + 'annotations_' + str(i) +'_train.json'
-    ann_val_out_path   = args.dataset_dir + '/' + 'annotations_' + str(i) + '_val.json'
-    ann_test_out_path  = args.dataset_dir + '/' + 'annotations_' + str(i) + '_test.json'
+    ann_train_out_path = '/Users/adriankoh/Documents/GitHub/Obj_Recognition/data/annotations_' + str(i) +'_train.json'
+    ann_val_out_path   = '/Users/adriankoh/Documents/GitHub/Obj_Recognition/data/annotations_' + str(i) + '_val.json'
+    ann_test_out_path  = '/Users/adriankoh/Documents/GitHub/Obj_Recognition/data/annotations_' + str(i) + '_test.json'
 
     with open(ann_train_out_path, 'w+') as f:
         f.write(json.dumps(train_set))
